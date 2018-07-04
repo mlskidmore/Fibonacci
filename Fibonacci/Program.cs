@@ -96,6 +96,47 @@ namespace Fibonacci
             return isPerfectSquare(5 * n * n + 4) ||
                    isPerfectSquare(5 * n * n - 4);
         }
+        
+        static void FindClosestFibNo()
+        {
+            /*
+             Given a positive integer, return the closest number of the Fibonacci
+             sequence, under these rules:
+
+             The closest Fibonacci number is defined as the Fibonacci number with
+             the smallest absolute difference with the given integer. For example,
+             34 is the closest Fibonacci number to 30, because |34 - 30| = 4,
+             which is smaller than the second closest one, 21, for which |21 - 30| = 9.
+
+             If the given integer belongs to the Fibonacci sequence, the closest
+             Fibonacci number is exactly itself. For example, the closest Fibonacci
+             number to 13 is exactly 13.
+
+             In case of a tie, you may choose to output either one of the Fibonacci
+             numbers that are both closest to the input or just output them both.
+             For instance, if the input is 17, all of the following are valid: 21,
+             13 or 21, 13. In case you return them both, please mention the format.
+             */
+
+            Func<int, int> g = x => {
+                                        int a = 0, b = 1;
+
+                                        for (; b < x; a = b - a)
+                                            b += a;
+
+                                        return x - a > b - x ? b : a;
+                                    };
+
+            Console.WriteLine(g(1));
+            Console.WriteLine(g(3));
+            Console.WriteLine(g(4));
+            Console.WriteLine(g(6));
+            Console.WriteLine(g(17));
+            Console.WriteLine(g(63));
+            Console.WriteLine(g(377));
+            Console.WriteLine(g(467));
+            Console.WriteLine(g(1399));
+        }
         static void Main(string[] args)
         {
             int input1 = 8;
@@ -117,11 +158,13 @@ namespace Fibonacci
             Console.WriteLine("Get " + input2 + "th Fibonacci: " + m);
             Console.WriteLine("Get2 " + input3 + "th Fibonacci: " + l);
             Console.WriteLine("Fib " + input4 + " Fibonacci: " + k);
-            Console.WriteLine("Dynamic Fib " + input5 + " Fibonacci: " + j);
+            Console.WriteLine("Dynamic Fib " + input5 + " Fibonacci: " + j + "\n");
 
             for (int i = 1; i <= 10; i++)
                 Console.WriteLine(isFibonacci(i) ? i + " is a Fibonacci Number" :
                                                    i + " is a not Fibonacci Number");
+            Console.WriteLine();
+            FindClosestFibNo();
 
             Console.ReadKey();
         }
