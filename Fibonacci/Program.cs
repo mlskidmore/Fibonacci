@@ -82,6 +82,20 @@ namespace Fibonacci
             int nthfibonacciNumber = FindNthFibonacciNumber(n - 1) + FindNthFibonacciNumber(n - 2);
             return nthfibonacciNumber;
         }
+        static bool isPerfectSquare(int x)
+        {
+            int s = (int)Math.Sqrt(x);
+            return (s * s == x);
+        }
+
+        // Returns true if n is a Fibonacci Number, else false
+        static bool isFibonacci(int n)
+        {
+            // n is Fibonacci if one of 5*n*n + 4 or 5*n*n - 4 or 
+            // both are a perfect square
+            return isPerfectSquare(5 * n * n + 4) ||
+                   isPerfectSquare(5 * n * n - 4);
+        }
         static void Main(string[] args)
         {
             int input1 = 8;
@@ -104,6 +118,10 @@ namespace Fibonacci
             Console.WriteLine("Get2 " + input3 + "th Fibonacci: " + l);
             Console.WriteLine("Fib " + input4 + " Fibonacci: " + k);
             Console.WriteLine("Dynamic Fib " + input5 + " Fibonacci: " + j);
+
+            for (int i = 1; i <= 10; i++)
+                Console.WriteLine(isFibonacci(i) ? i + " is a Fibonacci Number" :
+                                                   i + " is a not Fibonacci Number");
 
             Console.ReadKey();
         }
