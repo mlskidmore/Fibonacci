@@ -118,7 +118,7 @@ namespace Fibonacci
              13 or 21, 13. In case you return them both, please mention the format.
              */
 
-            Func<int, int> g = x => {
+            Func<int, int> funcG = x => {
                                         int a = 0, b = 1;
 
                                         for (; b < x; a = b - a)
@@ -127,15 +127,15 @@ namespace Fibonacci
                                         return x - a > b - x ? b : a;
                                     };
 
-            Console.WriteLine(g(1));
-            Console.WriteLine(g(3));
-            Console.WriteLine(g(4));
-            Console.WriteLine(g(6));
-            Console.WriteLine(g(17));
-            Console.WriteLine(g(63));
-            Console.WriteLine(g(377));
-            Console.WriteLine(g(467));
-            Console.WriteLine(g(1399));
+            Console.WriteLine(funcG(1));
+            Console.WriteLine(funcG(3));
+            Console.WriteLine(funcG(4));
+            Console.WriteLine(funcG(6));
+            Console.WriteLine(funcG(17));
+            Console.WriteLine(funcG(63));
+            Console.WriteLine(funcG(377));
+            Console.WriteLine(funcG(467));
+            Console.WriteLine(funcG(1399));
         }
         static void Main(string[] args)
         {
@@ -165,7 +165,7 @@ namespace Fibonacci
                                                    i + " is a not Fibonacci Number");
             Console.WriteLine();
             FindClosestFibNo();
-
+                        
             Console.ReadKey();
         }
     }
