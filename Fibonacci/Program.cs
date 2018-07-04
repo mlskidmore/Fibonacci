@@ -117,25 +117,42 @@ namespace Fibonacci
              For instance, if the input is 17, all of the following are valid: 21,
              13 or 21, 13. In case you return them both, please mention the format.
              */
+            int temp = 0;
+            Func<int, int> fibFunc = x => {
+                                            int a = 0, b = 1; temp = x;
 
-            Func<int, int> funcG = x => {
-                                        int a = 0, b = 1;
+                                            for (; b < x; a = b - a)
+                                                b += a;
 
-                                        for (; b < x; a = b - a)
-                                            b += a;
+                                            return x - a > b - x ? b : a;
+                                        };
 
-                                        return x - a > b - x ? b : a;
-                                    };
+            Console.WriteLine("Closet Fib number to " + temp + " is " + fibFunc(1));
+            Console.WriteLine("Closet Fib number to " + temp + " is " + fibFunc(3));
+            Console.WriteLine("Closet Fib number to " + temp + " is " + fibFunc(4));
+            Console.WriteLine("Closet Fib number to " + temp + " is " + fibFunc(5));
+            Console.WriteLine("Closet Fib number to " + temp + " is " + fibFunc(7));
+            Console.WriteLine("Closet Fib number to " + temp + " is " + fibFunc(14));
+            Console.WriteLine("Closet Fib number to " + temp + " is " + fibFunc(34));
+            Console.WriteLine("Closet Fib number to " + temp + " is " + fibFunc(44));
+            Console.WriteLine("Closet Fib number to " + temp + " is " + fibFunc(72));
+            Console.WriteLine("Closet Fib number to " + temp + " is " + fibFunc(99));
+        }
+        public static int FindFibonacci(int n)
+        {
+            int p = 0;
+            int q = 1;
+            for (int i = 0; i < n; i++)
+            {
+                int temp = p;
+                p = q;
+                q = temp + q;
+            }
+            return p;
+            /*for (; q < n; p = q - p)
+                q += p;
 
-            Console.WriteLine(funcG(1));
-            Console.WriteLine(funcG(3));
-            Console.WriteLine(funcG(4));
-            Console.WriteLine(funcG(6));
-            Console.WriteLine(funcG(17));
-            Console.WriteLine(funcG(63));
-            Console.WriteLine(funcG(377));
-            Console.WriteLine(funcG(467));
-            Console.WriteLine(funcG(1399));
+            return n - p > q - n ? q : p;*/
         }
         static void Main(string[] args)
         {
@@ -165,7 +182,18 @@ namespace Fibonacci
                                                    i + " is a not Fibonacci Number");
             Console.WriteLine();
             FindClosestFibNo();
-                        
+
+            Console.WriteLine("\n\nRecursion : Find the Fibonacci numbers for first n numbers:");
+            Console.WriteLine("-----------------------------------------------------------");
+
+            Console.Write(" Input number of terms for the Fibonacci series : ");
+            int n1 = Convert.ToInt32(Console.ReadLine());
+            Console.Write("\n The Fibonacci series of {0} terms is : ", n1);
+            for (int i = 0; i < n1; i++)
+            {
+                Console.Write("{0} ", FindFibonacci(i));
+            }
+
             Console.ReadKey();
         }
     }
